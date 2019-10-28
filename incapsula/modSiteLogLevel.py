@@ -14,7 +14,7 @@ from .sendRequest import ApiCredentials, ApiUrl, makeRequest
 api_creds = ApiCredentials()
 api_endpoint = ApiUrl.api_endpoint
 
-def modSiteLogLevel(site_id, log_level, verify_ssl):
+def modSiteLogLevel(site_id, log_level, verify_ssl=True):
     url = api_endpoint + 'prov/v1/sites/setlog'
     try:
         payload = {

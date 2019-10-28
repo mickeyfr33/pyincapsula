@@ -26,7 +26,7 @@ from .sendRequest import ApiCredentials, ApiUrl, makeRequest
 api_creds = ApiCredentials()
 api_endpoint = ApiUrl.api_endpoint
 
-def getReport(site_id, time_range, stats, verify_ssl, granularity=None, start=None, end=None):
+def getReport(site_id, time_range, stats, verify_ssl=True, granularity=None, start=None, end=None):
     url = api_endpoint + 'stats/v1'
     payload = {
         'api_id': api_creds.api_id,

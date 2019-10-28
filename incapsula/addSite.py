@@ -17,7 +17,7 @@ from .sendRequest import ApiCredentials, ApiUrl, makeRequest
 api_creds = ApiCredentials()
 api_endpoint = ApiUrl.api_endpoint
 
-def addSite(domain, account_id, site_ip, verify_ssl):
+def addSite(domain, account_id, site_ip, verify_ssl=True):
     url = api_endpoint + 'prov/v1/sites/add'
     try:
         payload = {

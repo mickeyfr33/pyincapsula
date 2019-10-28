@@ -16,7 +16,7 @@ api_creds = ApiCredentials()
 api_endpoint = ApiUrl.api_endpoint
 
 
-def modSiteACL(site_id, rule_id, listed, verify_ssl):
+def modSiteACL(site_id, rule_id, listed, verify_ssl=True):
     try:
         if rule_id == 'api.acl.blacklisted_countries':
             payload = {
