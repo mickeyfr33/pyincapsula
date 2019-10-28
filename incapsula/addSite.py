@@ -8,6 +8,7 @@ instructions to finnish verifing and setting up the site.
  account_id -- sub-account to associate the site with
  api_id -- API ID to use (Default: enviroment variable)
  api_key -- API KEY to use (Default: enviroment variable)
+ site_ip -- manually set the web server IP/CNAME aka Origin Server
 """
 
 from .com_error import errorProcess
@@ -16,7 +17,7 @@ from .sendRequest import ApiCredentials, ApiUrl, makeRequest
 api_creds = ApiCredentials()
 api_endpoint = ApiUrl.api_endpoint
 
-def addSite(domain, account_id, site_ip, dev):
+def addSite(domain, account_id, site_ip, verify_ssl):
     url = api_endpoint + 'prov/v1/sites/add'
     try:
         payload = {
@@ -26,8 +27,9 @@ def addSite(domain, account_id, site_ip, dev):
             'account_id': account_id,
             'send_site_setup_emails': 'true',
             'site_ip': site_ip,
-            'force_ssl': True
+            'force_ssl': 'true'
         }
-        return makeRequest(url, payload, dev)
+        r = makeRequest(url, payload, verify_ssl)
+        return r.text
     except Exception as error:
         return errorProcess(error)

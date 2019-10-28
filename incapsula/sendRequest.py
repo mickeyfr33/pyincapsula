@@ -3,14 +3,15 @@
 import os
 import requests
 
+
 class ApiCredentials:
     api_id = os.environ.get('API_ID')
     api_key = os.environ.get('API_KEY')
 
+
 class ApiUrl:
     api_endpoint = 'https://my.incapsula.com/api/'
 
-def makeRequest(url, payload, dev):
-    r = requests.post(url, data=payload, verify=dev)
-    return r.text
 
+def makeRequest(url, payload, verify_ssl=True):
+    return requests.post(url, data=payload, verify=verify_ssl)

@@ -6,24 +6,22 @@
  api_key -- API KEY to use (Default: enviroment variable)
 """
 
-import os
-import requests
 from .com_error import errorProcess
+from .sendRequest import ApiCredentials, ApiUrl, makeRequest
 
-api_endpoint = 'https://my.incapsula.com/api/'
+api_creds = ApiCredentials()
+api_endpoint = ApiUrl.api_endpoint
 
-def getDomainApproverEmail(
-        domain, api_id=os.environ.get('API_ID'),
-        api_key=os.environ.get('API_KEY')):
+def getDomainApproverEmail(domain, verify_ssl):
     url = api_endpoint+'prov/v1/domain/emails'
     try:
         assert domain is not None
         payload = {
-            'api_id':api_id,
-            'api_key':api_key,
-            'domain':domain
+            'api_id': api_creds.api_id,
+            'api_key': api_creds.api_key,
+            'domain': domain
         }
-        r = requests.post(url, data=payload)
+        r = makeRequest(url, payload, verify_ssl)
         r.rase_for_status()
         return r.text
     except AssertionError as error:
