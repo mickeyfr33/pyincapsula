@@ -12,7 +12,7 @@ from .sendRequest import ApiCredentials, ApiUrl, makeRequest
 api_creds = ApiCredentials()
 api_endpoint = ApiUrl.api_endpoint
 
-def getDomainApproverEmail(domain, verify_ssl=True):
+def getDomainApproverEmail(domain, verify_ssl):
     url = api_endpoint+'prov/v1/domain/emails'
     try:
         assert domain is not None

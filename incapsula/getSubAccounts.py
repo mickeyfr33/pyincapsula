@@ -22,7 +22,7 @@ from .sendRequest import ApiCredentials, ApiUrl, makeRequest
 api_creds = ApiCredentials()
 api_endpoint = ApiUrl.api_endpoint
 
-def getSubAccounts(verify_ssl=True, page=0, page_size=30, recursive=True, account_id=None):
+def getSubAccounts(verify_ssl, page=0, page_size=30, recursive=True, account_id=None):
     url= api_endpoint+'prov/v1/accounts/listSubAccounts'
     payload = {
         'api_id': api_creds.api_id,

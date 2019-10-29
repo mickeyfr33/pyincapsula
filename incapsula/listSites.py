@@ -12,7 +12,7 @@ from .sendRequest import ApiCredentials, ApiUrl, makeRequest
 api_creds = ApiCredentials()
 api_endpoint = ApiUrl.api_endpoint
 
-def listSites(verify_ssl=True):
+def listSites(verify_ssl):
     url = api_endpoint + 'prov/v1/sites/list'
     try:
         payload = {

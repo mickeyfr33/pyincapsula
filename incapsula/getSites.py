@@ -23,7 +23,7 @@ from .sendRequest import ApiCredentials, ApiUrl, makeRequest
 api_creds = ApiCredentials()
 api_endpoint = ApiUrl.api_endpoint
 
-def getSites(account=None, verify_ssl=True, page=0, page_size=100, recursive=True):
+def getSites(verify_ssl, account=None, page=0, page_size=100, recursive=True):
     url = api_endpoint+'prov/v1/sites/list'
     payload = {
         'api_id': api_creds.api_id,

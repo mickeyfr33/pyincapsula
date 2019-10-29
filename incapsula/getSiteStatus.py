@@ -13,7 +13,7 @@ from .sendRequest import ApiCredentials, ApiUrl, makeRequest
 api_creds = ApiCredentials()
 api_endpoint = ApiUrl.api_endpoint
 
-def getSiteStatus(site_id, verify_ssl=True):
+def getSiteStatus(site_id, verify_ssl):
     url = api_endpoint + 'prov/v1/sites/status'
     try:
         payload = {

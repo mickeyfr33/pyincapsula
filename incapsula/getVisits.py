@@ -40,7 +40,7 @@ api_creds = ApiCredentials()
 api_endpoint = ApiUrl.api_endpoint
 
 def getVisits(
-        site_id, verify_ssl=True, time_range='last_7_days', granularity=None, start=None,
+        site_id, verify_ssl, time_range='last_7_days', granularity=None, start=None,
         end=None, page=0, page_size=100, security=None, country=None, ip=None,
         visit_id=None, recursive=True, list_live_visits='false'):
     url = api_endpoint + 'visits/v1'
