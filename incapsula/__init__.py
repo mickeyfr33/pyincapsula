@@ -15,3 +15,4 @@ from .getRules import getRules
 from .getVisits import getVisits
 from .modCachingRule import modCachingRule
 from .modCacheLevel import modCacheLevel
+from .redirectHTTP import redirectHTTP
