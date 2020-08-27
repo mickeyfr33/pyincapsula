@@ -27,7 +27,7 @@ from .sendRequest import ApiCredentials, ApiUrl, makeRequest
 api_creds = ApiCredentials()
 api_endpoint = ApiUrl.api_endpoint
 
-def modSiteSecurityConfig(verify_ssl, site_id=None, rule_id=None, value=None, chal_sus_bot='true', ddos_mode='auto'):
+def modSiteSecurityConfig(site_id=None, rule_id=None, value=None, chal_sus_bot='true', ddos_mode='auto'):
     url = api_endpoint+'prov/v1/sites/configure/security'
     try: # Setup the payload
         assert site_id is not None
@@ -69,7 +69,7 @@ def modSiteSecurityConfig(verify_ssl, site_id=None, rule_id=None, value=None, ch
     except Exception as error:
         return errorProcess(error)
     try: # Deliver the payload
-        r = makeRequest(url, payload, verify_ssl)
+        r = makeRequest(url, payload)
         r.raise_for_status()
         return r.text
     except NameError as error:

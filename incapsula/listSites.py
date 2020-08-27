@@ -12,7 +12,7 @@ from .sendRequest import ApiCredentials, ApiUrl, makeRequest
 api_creds = ApiCredentials()
 api_endpoint = ApiUrl.api_endpoint
 
-def listSites(verify_ssl):
+def listSites():
     url = api_endpoint + 'prov/v1/sites/list'
     try:
         payload = {
@@ -20,7 +20,7 @@ def listSites(verify_ssl):
             'api_key': api_creds.api_key,
             'page_size': 100
         }
-        r = makeRequest(url, payload, verify_ssl)
+        r = makeRequest(url, payload)
         return r.text
     except Exception as error:
         return errorProcess(error)

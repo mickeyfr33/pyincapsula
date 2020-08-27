@@ -40,7 +40,7 @@ api_creds = ApiCredentials()
 api_endpoint = ApiUrl.api_endpoint
 
 def getVisits(
-        site_id, verify_ssl, time_range='last_7_days', granularity=None, start=None,
+        site_id, time_range='last_7_days', granularity=None, start=None,
         end=None, page=0, page_size=100, security=None, country=None, ip=None,
         visit_id=None, recursive=True, list_live_visits='false'):
     url = api_endpoint + 'visits/v1'
@@ -83,7 +83,7 @@ def getVisits(
     if visit_id is not None:
         payload['visit_id']=visit_id
     try:
-        r = makeRequest(url, payload, verify_ssl)
+        r = makeRequest(url, payload)
         r_json = json.loads(r.text)
         # ['visits'] will always be returned. Unless an error has
         # occured, in whcich case res will be greater then 0.
@@ -94,7 +94,7 @@ def getVisits(
             # we already have all the data and it's time to move on.
             while len(r_json['visits']) == max_objects:
                 payload['page_num']=payload['page_num']+1
-                r = makeRequest(url, payload, verify_ssl)
+                r = makeRequest(url, payload)
                 r_json = json.loads(r.text)
                 out['visits'].extend(r_json['visits'])
         else:

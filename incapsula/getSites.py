@@ -23,7 +23,7 @@ from .sendRequest import ApiCredentials, ApiUrl, makeRequest
 api_creds = ApiCredentials()
 api_endpoint = ApiUrl.api_endpoint
 
-def getSites(verify_ssl, account=None, page=0, page_size=100, recursive=True):
+def getSites account=None, page=0, page_size=100, recursive=True):
     url = api_endpoint+'prov/v1/sites/list'
     payload = {
         'api_id': api_creds.api_id,
@@ -34,7 +34,7 @@ def getSites(verify_ssl, account=None, page=0, page_size=100, recursive=True):
     if account is not None:
         payload['account_id']=account
     try: 
-        r = makeRequest(url, payload, verify_ssl)
+        r = makeRequest(url, payload,
         results = json.loads(r.text)
         if recursive and results['res'] == 0:
             max_objects=page_size
@@ -43,7 +43,7 @@ def getSites(verify_ssl, account=None, page=0, page_size=100, recursive=True):
             # we already have all the data and it's time to move on.
             while len(results['sites']) == max_objects:
                 payload['page_num']=payload['page_num']+1
-                r = makeRequest(url, payload, verify_ssl)
+                r = makeRequest(url, payload,
                 results = json.loads(r.text)
                 out_json['sites'].extend(results['sites'])
         else:

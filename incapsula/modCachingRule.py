@@ -31,8 +31,7 @@ api_creds = ApiCredentials()
 api_endpoint = ApiUrl.api_endpoint
 
 def modCachingRule(
-        verify_ssl, site_id=None,
-        never_cache_resource_pattern=None, never_cache_resource_url=None, always_cache_resource_url=None,
+        site_id=None, never_cache_resource_pattern=None, never_cache_resource_url=None, always_cache_resource_url=None,
         always_cache_resource_pattern=None, always_cache_resource_duration=None, cache_headers=None,
         clear_always_cache_rules=None, clear_never_cache_rules=None, clear_cache_headers_rules=None):
 
@@ -69,7 +68,7 @@ def modCachingRule(
     except Exception as error:
         return errorProcess(error)
     try:  # Deliver the payload
-        r = makeRequest(url, payload, verify_ssl)
+        r = makeRequest(url, payload)
         r.raise_for_status()
         return r.text
     except NameError as error:

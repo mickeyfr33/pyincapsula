@@ -19,7 +19,7 @@ from .sendRequest import ApiCredentials, ApiUrl, makeRequest
 api_creds = ApiCredentials()
 api_endpoint = ApiUrl.api_endpoint
 
-def getRules(site_id, verify_ssl, page=0, page_size=100, include_ad_rules='Yes', include_incap_rules='yes'):
+def getRules(site_id, page=0, page_size=100, include_ad_rules='Yes', include_incap_rules='yes'):
     # https://docs.incapsula.com/Content/API/sites-api.htm#List
     url = api_endpoint+'prov/v1/sites/incapRules/list'
     try:
@@ -32,7 +32,7 @@ def getRules(site_id, verify_ssl, page=0, page_size=100, include_ad_rules='Yes',
             'page_size': page_size,
             'page_num': page
         }
-        r = makeRequest(url, payload, verify_ssl)
+        r = makeRequest(url, payload)
         return r.text
     except Exception as error:
         return errorProcess(error)

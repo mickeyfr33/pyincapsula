@@ -16,7 +16,7 @@ api_creds = ApiCredentials()
 api_endpoint = ApiUrl.api_endpoint
 
 
-def modSiteACL(site_id, rule_id, listed, verify_ssl):
+def modSiteACL(site_id, rule_id, listed):
     try:
         if rule_id == 'api.acl.blacklisted_countries':
             payload = {
@@ -51,7 +51,7 @@ def modSiteACL(site_id, rule_id, listed, verify_ssl):
                 'ips':listed
             }
         url = api_endpoint + 'prov/v1/sites/configure/acl'
-        r = makeRequest(url, payload, verify_ssl)
+        r = makeRequest(url, payload)
         return r.text
     except Exception as error:
         return errorProcess(error)

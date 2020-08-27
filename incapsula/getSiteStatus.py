@@ -13,7 +13,7 @@ from .sendRequest import ApiCredentials, ApiUrl, makeRequest
 api_creds = ApiCredentials()
 api_endpoint = ApiUrl.api_endpoint
 
-def getSiteStatus(site_id, verify_ssl):
+def getSiteStatus(site_id):
     url = api_endpoint + 'prov/v1/sites/status'
     try:
         payload = {
@@ -21,7 +21,7 @@ def getSiteStatus(site_id, verify_ssl):
             'api_key': api_creds.api_key,
             'site_id': site_id
         }
-        r = makeRequest(url, payload, verify_ssl)
+        r = makeRequest(url, payload)
         return r.text
     except Exception as error:
         return errorProcess(error)

@@ -14,7 +14,7 @@ from .sendRequest import ApiCredentials, ApiUrl, makeRequest
 api_creds = ApiCredentials()
 api_endpoint = ApiUrl.api_endpoint
 
-def modSiteLogLevel(site_id, log_level, verify_ssl):
+def modSiteLogLevel(site_id, log_level):
     url = api_endpoint + 'prov/v1/sites/setlog'
     try:
         payload = {
@@ -23,7 +23,7 @@ def modSiteLogLevel(site_id, log_level, verify_ssl):
             'site_id': site_id,
             'log_level': log_level
         }
-        r = makeRequest(url, payload, verify_ssl)
+        r = makeRequest(url, payload)
         return r.text
     except Exception as error:
         return errorProcess(error)

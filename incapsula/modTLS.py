@@ -16,7 +16,7 @@ api_creds = ApiCredentials()
 api_endpoint = ApiUrl.api_endpoint
 
 # Requires Site_ID and if all versions of TLS should be supported
-def modTLS(site_id, verify_ssl, support_all_tls_versions='true'):
+def modTLS(site_id, support_all_tls_versions='true'):
     url = api_endpoint+'prov/v1/sites/tls'
     try:
         support_all_tls_versions = str(support_all_tls_versions).lower()
@@ -26,7 +26,7 @@ def modTLS(site_id, verify_ssl, support_all_tls_versions='true'):
             'site_id': site_id,
             'support_all_tls_versions':support_all_tls_versions
         }
-        r = makeRequest(url, payload, verify_ssl)
+        r = makeRequest(url, payload)
         return r.text
     except Exception as error:
         return errorProcess(error)

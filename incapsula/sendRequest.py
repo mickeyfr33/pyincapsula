@@ -13,5 +13,5 @@ class ApiUrl:
     api_endpoint = 'https://my.incapsula.com/api/'
 
 
-def makeRequest(url, payload, verify_ssl=True):
-    return requests.post(url, data=payload, verify=verify_ssl)
+def makeRequest(url, payload):
+    return requests.post(url, data=payload)

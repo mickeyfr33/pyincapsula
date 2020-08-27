@@ -22,7 +22,7 @@ api_endpoint = ApiUrl.api_endpoint
 
 # Requires the Site_ID, location of the certificate file, location of
 # the Private Key file, and the passphrase if required
-def modCustomCert(site_id, certificate, private_key, verify_ssl, passphrase=None):
+def modCustomCert(site_id, certificate, private_key, passphrase=None):
     try:
         with open(certificate,'rb') as certFile:
             read = certFile.read()
@@ -58,7 +58,7 @@ def modCustomCert(site_id, certificate, private_key, verify_ssl, passphrase=None
                 'certificate': cert,
                 'private_key': privKey
             }
-        r = makeRequest(url, payload, verify_ssl)
+        r = makeRequest(url, payload)
         return r.text
     except Exception as error:
         return errorProcess(error)

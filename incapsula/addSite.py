@@ -17,7 +17,7 @@ from .sendRequest import ApiCredentials, ApiUrl, makeRequest
 api_creds = ApiCredentials()
 api_endpoint = ApiUrl.api_endpoint
 
-def addSite(domain, account_id, site_ip, verify_ssl):
+def addSite(domain, account_id, site_ip):
     url = api_endpoint + 'prov/v1/sites/add'
     try:
         payload = {
@@ -29,7 +29,7 @@ def addSite(domain, account_id, site_ip, verify_ssl):
             'site_ip': site_ip,
             'force_ssl': 'true'
         }
-        r = makeRequest(url, payload, verify_ssl)
+        r = makeRequest(url, payload)
         return r.text
     except Exception as error:
         return errorProcess(error)
